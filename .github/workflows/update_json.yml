@@ -24,7 +24,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Dump All LSG Bodies
       run: |
-        rm -r data/*
+        rm -rf data/*
         python lsg.py
     - name: Commit files
       run: |
