@@ -38,7 +38,7 @@ if __name__ == "__main__":
         lsg_code = i[2].title()
         if lsg_code in completed_lsg:
             continue
-        ward = ward_details.get(lsg_code, "")
+        ward = ward_details.get(lsg_code, [])
         data = {
             "name": i[3].title(),
             "lsg_code": lsg_code,
