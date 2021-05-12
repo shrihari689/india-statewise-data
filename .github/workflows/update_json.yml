@@ -25,6 +25,7 @@ jobs:
     - name: Dump All LSG Bodies
       run: |
         rm -r data/*
+        python lsg.py
     - name: Commit files
       run: |
           git config --global user.name 'Maintainer'
