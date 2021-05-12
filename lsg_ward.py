@@ -18,7 +18,7 @@ list_of_csv_files = listdir(CSV_FOLDER)
 def load_all_ward_data():
     ward_data = {}
     for file in list_of_csv_files:
-        with open(f"{CSV_FOLDER}/{file}", "r", encoding="utf8") as csv_file:
+        with open(f"{CSV_FOLDER}/{file}", "r", encoding="utf-16") as csv_file:
             data = csv.DictReader(csv_file)
             for row in data:
                 row_details = {k.strip(): v for k, v in row.items()}
