@@ -5,6 +5,7 @@ import os
 
 BLOCK_FILE = "https://raw.githubusercontent.com/planemad/india-local-government-directory/master/statistical/blocks.csv"
 
+
 def parameterize(word: str) -> str:
     return word.replace(" ", "_").lower().strip()
 
@@ -30,8 +31,8 @@ def dump_file(data, type):
 
 if __name__ == "__main__":
     file = requests.get(BLOCK_FILE).text
-    csv_file = csv.reader(file.splitlines(), delimiter=",")
-    for i in csv_file[1:]:
+    csv_file = csv.reader(file.splitlines()[1:], delimiter=",")
+    for i in csv_file:
         state = i[2]
         district = i[4]
         block = i[7]
