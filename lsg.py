@@ -2,6 +2,7 @@ import requests
 import csv
 import json
 import os
+from lsg_ward import load_all_ward_data
 
 LSG_FILE = "https://raw.githubusercontent.com/planemad/india-local-government-directory/master/municipal-directory.csv"
 
@@ -31,17 +32,20 @@ def dump_file(data, type):
 if __name__ == "__main__":
     file = requests.get(LSG_FILE).text
     csv_file = csv.reader(file.splitlines()[1:], delimiter=",")
+    ward_details = load_all_ward_data()
     completed_lsg = set()
     for i in csv_file:
         lsg_code = i[2].title()
         if lsg_code in completed_lsg:
             continue
+        ward = ward_details.get(lsg_code, "")
         data = {
             "name": i[3].title(),
             "lsg_code": lsg_code,
             "district": i[8].title(),
             "state": i[1].title(),
-            "wards": []
+            "no_of_wards": len(ward),
+            "wards": ward
         }
         dump_file(data, "lsg")
         completed_lsg.add(lsg_code)
