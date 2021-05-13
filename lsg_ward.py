@@ -21,7 +21,7 @@ def load_all_ward_data():
         with open(f"{CSV_FOLDER}/{file}", "r", encoding="latin-1") as csv_file:
             data = csv.DictReader(csv_file)
             for row in data:
-                row_details = {k.strip(): v for k, v in row.items()}
+                row_details = {str(k).strip(): v for k, v in row.items()}
                 lsg_code = row_details.get("Local Body Code", "")
                 ward = {
                     "ward_no": row_details.get("Ward\nNumber", "") or row_details.get("Ward Number", ""),
